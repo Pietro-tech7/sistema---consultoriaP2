@@ -1,9 +1,6 @@
 package com.consultoria.repository;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
+import com.google.gson.*;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
@@ -17,7 +14,17 @@ public class JsonRepository<T> {
 
     public JsonRepository(String path, Type type) {
         this.file = new File(path);
-        this.gson = new GsonBuilder().setPrettyPrinting().create();
+
+        this.gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(java.time.LocalDate.class,
+                        (JsonDeserializer<java.time.LocalDate>) (json, typeOfT, context) ->
+                                java.time.LocalDate.parse(json.getAsString()))
+                .registerTypeAdapter(java.time.LocalDate.class,
+                        (JsonSerializer<java.time.LocalDate>) (localDate, typeOfSrc, context) ->
+                                new JsonPrimitive(localDate.toString()))
+                .create();
+
         this.type = type;
         ensureFile();
     }
@@ -51,4 +58,3 @@ public class JsonRepository<T> {
         }
     }
 }
-
