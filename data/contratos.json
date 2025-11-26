@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "id": "64a7a624-8876-42fb-8a21-2228941a7942",
+    "clienteId": "dbf8c252-4535-43d6-ba1a-8e62c7c28391",
+    "consultorId": "7edbd27a-ae25-46fa-b5fe-c782ee4396bf",
+    "valorTotal": 5000.0,
+    "dataInicio": "2025-11-26",
+    "dataFim": "2026-02-26",
+    "clausulas": "Atendimento prioritário (VIP)"
+  },
+  {
+    "id": "d105dffa-89fd-4e05-ae6b-1f471b42f32d",
+    "clienteId": "dfd1146f-43a9-492d-a624-af1cda111d40",
+    "consultorId": "60182c1b-b4ef-4799-b96f-2094730c76da",
+    "valorTotal": 5000.0,
+    "dataInicio": "2025-11-26",
+    "dataFim": "2026-02-26",
+    "clausulas": "Atendimento prioritário (VIP)"
+  },
+  {
+    "id": "a4bc6d97-a256-48ff-b3e9-fd12cd4caf86",
+    "clienteId": "323258f1-c512-4a26-9a3f-8512e1ca4ff4",
+    "consultorId": "508fe5f6-cfd1-46aa-9be5-b8a39d2e18d0",
+    "valorTotal": 5000.0,
+    "dataInicio": "2025-11-26",
+    "dataFim": "2026-02-26",
+    "clausulas": "Atendimento prioritário (VIP)"
+  },
+  {
+    "id": "d80f51d9-f1eb-4761-b550-676e896931a1",
+    "clienteId": "e2ce4ecc-610f-415c-bd42-fd1254a0beca",
+    "consultorId": "5bbf9189-c277-4dbe-be55-b21508bb24bc",
+    "valorTotal": 5000.0,
+    "dataInicio": "2025-11-26",
+    "dataFim": "2026-02-26",
+    "clausulas": "Atendimento prioritário (VIP)"
+  }
+]

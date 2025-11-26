@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "id": "28d05ff5-00df-46bc-a9e3-2ad63b20fd86",
+    "nome": "Análise Inicial",
+    "status": "Pendente",
+    "prazo": "2025-12-03"
+  },
+  {
+    "id": "56ef0b1b-224f-4844-ab01-08b68051dbc1",
+    "nome": "Implementação",
+    "status": "Pendente",
+    "prazo": "2025-12-16"
+  },
+  {
+    "id": "afb7160c-90bf-431c-9171-3dd81e8a3424",
+    "nome": "Análise Inicial",
+    "status": "Pendente",
+    "prazo": "2025-12-03"
+  },
+  {
+    "id": "b566de92-bccb-44b1-9805-e7343c643f05",
+    "nome": "Implementação",
+    "status": "Pendente",
+    "prazo": "2025-12-16"
+  },
+  {
+    "id": "cb94e758-f87a-48a9-a160-3a5889eb0724",
+    "nome": "Análise Inicial",
+    "status": "Pendente",
+    "prazo": "2025-12-03"
+  },
+  {
+    "id": "01249054-4c0b-49a4-a8cd-54ecff5c9495",
+    "nome": "Implementação",
+    "status": "Pendente",
+    "prazo": "2025-12-16"
+  },
+  {
+    "id": "45872de3-1efa-459c-b96d-7445cca2cdb7",
+    "nome": "Análise Inicial",
+    "status": "Pendente",
+    "prazo": "2025-12-03"
+  },
+  {
+    "id": "926bdf12-e43e-4030-bead-36adf16b4657",
+    "nome": "Implementação",
+    "status": "Pendente",
+    "prazo": "2025-12-16"
+  }
+]

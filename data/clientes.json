@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "categoria": "VIP",
+    "pontosFidelidade": 0,
+    "id": "dbf8c252-4535-43d6-ba1a-8e62c7c28391",
+    "nome": "Rute Elias",
+    "email": "maria@empresa.com"
+  },
+  {
+    "categoria": "VIP",
+    "pontosFidelidade": 0,
+    "id": "dfd1146f-43a9-492d-a624-af1cda111d40",
+    "nome": "Pietro Iassem",
+    "email": "pietro@empresa.com"
+  },
+  {
+    "categoria": "VIP",
+    "pontosFidelidade": 0,
+    "id": "323258f1-c512-4a26-9a3f-8512e1ca4ff4",
+    "nome": "Rute Elias",
+    "email": "rute@empresa.com"
+  },
+  {
+    "categoria": "VIP",
+    "pontosFidelidade": 0,
+    "id": "e2ce4ecc-610f-415c-bd42-fd1254a0beca",
+    "nome": "Rute Elias",
+    "email": "rute@empresa.com"
+  }
+]

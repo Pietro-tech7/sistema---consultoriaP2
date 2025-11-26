@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "id": "94de4bbc-976f-4908-b86a-df01076d9207",
+    "nome": "Consultoria Financeira",
+    "descricao": "Projeto completo de análise e planejamento",
+    "clienteId": "dbf8c252-4535-43d6-ba1a-8e62c7c28391",
+    "consultorId": "7edbd27a-ae25-46fa-b5fe-c782ee4396bf",
+    "valor": 5000.0,
+    "status": "Em andamento"
+  },
+  {
+    "id": "4e8ae98f-d888-438e-a1ca-2e90f1379489",
+    "nome": "Consultoria Financeira",
+    "descricao": "Projeto completo de análise e planejamento",
+    "clienteId": "dfd1146f-43a9-492d-a624-af1cda111d40",
+    "consultorId": "60182c1b-b4ef-4799-b96f-2094730c76da",
+    "valor": 5000.0,
+    "status": "Em andamento"
+  },
+  {
+    "id": "65121a0e-2bd4-4921-8533-d4a136375d47",
+    "nome": "Consultoria Financeira",
+    "descricao": "Projeto completo de análise e planejamento",
+    "clienteId": "323258f1-c512-4a26-9a3f-8512e1ca4ff4",
+    "consultorId": "508fe5f6-cfd1-46aa-9be5-b8a39d2e18d0",
+    "valor": 5000.0,
+    "status": "Em andamento"
+  },
+  {
+    "id": "55b64ca6-d89a-442b-b07a-115ccfecc3d7",
+    "nome": "Consultoria Financeira",
+    "descricao": "Projeto completo de análise e planejamento",
+    "clienteId": "e2ce4ecc-610f-415c-bd42-fd1254a0beca",
+    "consultorId": "5bbf9189-c277-4dbe-be55-b21508bb24bc",
+    "valor": 5000.0,
+    "status": "Em andamento"
+  }
+]
