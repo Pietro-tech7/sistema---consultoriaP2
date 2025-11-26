@@ -74,6 +74,7 @@ public class Main {
                         "Em andamento"
                 )
         );
+
         Etapa etapa1 = etapaService.criarEtapa(
                 new Etapa(UUID.randomUUID().toString(), "Análise Inicial", "Pendente", LocalDate.now().plusDays(7))
         );
