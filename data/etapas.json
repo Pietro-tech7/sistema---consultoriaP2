@@ -58,5 +58,17 @@
     "nome": "Implementação",
     "status": "Pendente",
     "prazo": "2025-12-16"
+  },
+  {
+    "id": "65a82258-104a-4b2c-8daa-75db70f5ed75",
+    "nome": "Análise Inicial",
+    "status": "Pendente",
+    "prazo": "2025-12-03"
+  },
+  {
+    "id": "b5f3a178-99c5-4375-9f49-9046eb64c7a1",
+    "nome": "Implementação",
+    "status": "Pendente",
+    "prazo": "2025-12-16"
   }
 ]
