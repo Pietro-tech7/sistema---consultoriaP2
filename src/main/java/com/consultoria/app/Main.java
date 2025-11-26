@@ -43,12 +43,14 @@ public class Main {
         );
         Cliente vip = clienteService.cadastrarVIP(
                 UUID.randomUUID().toString(),
-                "Maria Silva",
-                "maria@empresa.com"
+                "Rute Elias",
+                "rute@empresa.com"
         );
+
         Consultor consultor = consultorService.cadastrar(
                 new Consultor(UUID.randomUUID().toString(), "João Consultor", "joao@consult.com", "Financeiro")
         );
+
         Contrato contrato = contratoService.criar(
                 new Contrato(
                         UUID.randomUUID().toString(),
