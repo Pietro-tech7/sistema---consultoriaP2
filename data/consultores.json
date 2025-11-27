@@ -64,5 +64,11 @@
     "id": "9cf356c2-1a0f-45a0-96e9-3f92c3e00b17",
     "nome": "João Consultor",
     "email": "joao@consult.com"
+  },
+  {
+    "especializacao": "Financeiro",
+    "id": "a2dd4ebc-a979-4469-aaa4-a6edc22f441f",
+    "nome": "João Consultor",
+    "email": "joao@consult.com"
   }
 ]
