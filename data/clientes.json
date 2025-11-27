@@ -1,7 +1,7 @@
 [
   {
     "categoria": "VIP",
-    "pontosFidelidade": 0,
+    "pontosFidelidade": 10,
     "id": "dbf8c252-4535-43d6-ba1a-8e62c7c28391",
     "nome": "Rute Elias",
     "email": "maria@empresa.com"
@@ -15,7 +15,7 @@
   },
   {
     "categoria": "VIP",
-    "pontosFidelidade": 0,
+    "pontosFidelidade": 10,
     "id": "323258f1-c512-4a26-9a3f-8512e1ca4ff4",
     "nome": "Rute Elias",
     "email": "rute@empresa.com"
@@ -29,7 +29,7 @@
   },
   {
     "categoria": "VIP",
-    "pontosFidelidade": 0,
+    "pontosFidelidade": 10,
     "id": "53584204-0f5c-437b-bea3-ee1fcb7dde42",
     "nome": "Rute Elias",
     "email": "rute@empresa.com"
@@ -43,7 +43,7 @@
   },
   {
     "categoria": "VIP",
-    "pontosFidelidade": 0,
+    "pontosFidelidade": 10,
     "id": "4cbfb392-210e-4395-a46d-5c2600046883",
     "nome": "Rute Elias",
     "email": "rute@empresa.com"
@@ -52,6 +52,13 @@
     "categoria": "VIP",
     "pontosFidelidade": 0,
     "id": "611663dd-f78b-469b-9379-895a9ba92dbd",
+    "nome": "Rute Elias",
+    "email": "rute@empresa.com"
+  },
+  {
+    "categoria": "VIP",
+    "pontosFidelidade": 10,
+    "id": "e90b727c-aded-4735-8454-0e4bc1a843bf",
     "nome": "Rute Elias",
     "email": "rute@empresa.com"
   }
