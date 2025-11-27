@@ -40,5 +40,12 @@
     "id": "c83b1e72-b391-4089-b3f6-6e4547f59bc4",
     "nome": "Rute Elias",
     "email": "rute@empresa.com"
+  },
+  {
+    "categoria": "VIP",
+    "pontosFidelidade": 0,
+    "id": "4cbfb392-210e-4395-a46d-5c2600046883",
+    "nome": "Rute Elias",
+    "email": "rute@empresa.com"
   }
 ]
