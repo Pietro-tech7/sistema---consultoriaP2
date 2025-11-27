@@ -88,5 +88,14 @@
     "consultorId": "19a78cfc-ce78-42aa-8f17-7a86fb12232f",
     "valor": 5000.0,
     "status": "Em andamento"
+  },
+  {
+    "id": "7cbed25e-bb6e-4d8e-8125-38d0eb912d91",
+    "nome": "Consultoria Financeira",
+    "descricao": "Projeto completo de análise e planejamento",
+    "clienteId": "2cce48f3-3cdf-4f03-a61e-6a1957b47dd9",
+    "consultorId": "9cf356c2-1a0f-45a0-96e9-3f92c3e00b17",
+    "valor": 5000.0,
+    "status": "Em andamento"
   }
 ]
