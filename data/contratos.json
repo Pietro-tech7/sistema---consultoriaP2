@@ -151,5 +151,14 @@
     "dataInicio": "2025-11-26",
     "dataFim": "2026-02-26",
     "clausulas": "Atendimento prioritário (VIP)"
+  },
+  {
+    "id": "f293b9c5-c56b-4d03-a276-6bd70910da14",
+    "clienteId": "b9a961ab-f541-453e-b9f9-259f43c8fcd9",
+    "consultorId": "703768dc-f1cf-4e0b-9c68-88de87c6b66b",
+    "valorTotal": 5000.0,
+    "dataInicio": "2025-11-27",
+    "dataFim": "2026-02-27",
+    "clausulas": "Atendimento prioritário (VIP)"
   }
 ]
