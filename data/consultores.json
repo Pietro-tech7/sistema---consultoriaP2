@@ -106,5 +106,23 @@
     "id": "703768dc-f1cf-4e0b-9c68-88de87c6b66b",
     "nome": "João Consultor",
     "email": "joao@consult.com"
+  },
+  {
+    "especializacao": "Financeiro",
+    "id": "9e8e856a-7dd4-46ce-8c2d-f57e19fdccd5",
+    "nome": "João Consultor",
+    "email": "joao@consult.com"
+  },
+  {
+    "especializacao": "Financeiro",
+    "id": "6ce53aee-1357-4090-97c0-761f77ad47f9",
+    "nome": "João Consultor",
+    "email": "joao@consult.com"
+  },
+  {
+    "especializacao": "Financeiro",
+    "id": "570bb470-b453-4966-b496-2c5309bce346",
+    "nome": "João Consultor",
+    "email": "joao@consult.com"
   }
 ]

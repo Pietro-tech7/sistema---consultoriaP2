@@ -160,5 +160,32 @@
     "consultorId": "703768dc-f1cf-4e0b-9c68-88de87c6b66b",
     "valor": 5000.0,
     "status": "Em andamento"
+  },
+  {
+    "id": "2903b13c-3ad9-4fc0-ac6f-2071eb584ff2",
+    "nome": "Consultoria Financeira",
+    "descricao": "Projeto completo de análise e planejamento",
+    "clienteId": "b7f212f7-208b-4a9a-8008-a4a3fca563ff",
+    "consultorId": "9e8e856a-7dd4-46ce-8c2d-f57e19fdccd5",
+    "valor": 5000.0,
+    "status": "Em andamento"
+  },
+  {
+    "id": "e7c42098-35f8-4505-a8c2-77dc274ae774",
+    "nome": "Consultoria Financeira",
+    "descricao": "Projeto completo de análise e planejamento",
+    "clienteId": "5b6938cc-d618-42fb-a72e-b0bdaafaed6e",
+    "consultorId": "6ce53aee-1357-4090-97c0-761f77ad47f9",
+    "valor": 5000.0,
+    "status": "Em andamento"
+  },
+  {
+    "id": "ebee46e2-47eb-4699-907a-aa142f1effaf",
+    "nome": "Consultoria Financeira",
+    "descricao": "Projeto completo de análise e planejamento",
+    "clienteId": "f8572517-64de-4a8e-a121-d399714a5c5e",
+    "consultorId": "570bb470-b453-4966-b496-2c5309bce346",
+    "valor": 5000.0,
+    "status": "Em andamento"
   }
 ]
