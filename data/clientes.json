@@ -145,5 +145,26 @@
     "id": "f8572517-64de-4a8e-a121-d399714a5c5e",
     "nome": "Rute Elias",
     "email": "rute@empresa.com"
+  },
+  {
+    "categoria": "VIP",
+    "pontosFidelidade": 0,
+    "id": "5396533a-4a9a-4309-b2ce-50e2653bbbfb",
+    "nome": "Rute Elias",
+    "email": "rute@empresa.com"
+  },
+  {
+    "categoria": "VIP",
+    "pontosFidelidade": 0,
+    "id": "298c6e57-c583-4ee6-bc14-71d133ae93c6",
+    "nome": "Rute Elias",
+    "email": "rute@empresa.com"
+  },
+  {
+    "categoria": "VIP",
+    "pontosFidelidade": 0,
+    "id": "cb34a9bb-dc3b-4843-a1fb-2a95f90cc4a6",
+    "nome": "Rute Elias",
+    "email": "rute@empresa.com"
   }
 ]

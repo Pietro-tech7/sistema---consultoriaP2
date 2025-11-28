@@ -250,5 +250,41 @@
     "nome": "Implementação",
     "status": "Pendente",
     "prazo": "2025-12-18"
+  },
+  {
+    "id": "18aea101-a995-4eea-9fc2-0022a1162649",
+    "nome": "Análise Inicial",
+    "status": "Pendente",
+    "prazo": "2025-12-05"
+  },
+  {
+    "id": "e0cf5418-2311-4391-a9a8-147f0738d5a8",
+    "nome": "Implementação",
+    "status": "Pendente",
+    "prazo": "2025-12-18"
+  },
+  {
+    "id": "98dddebe-fbef-4c7e-846e-d4a156ee7c44",
+    "nome": "Análise Inicial",
+    "status": "Pendente",
+    "prazo": "2025-12-05"
+  },
+  {
+    "id": "86880c6a-b938-4805-ab7c-fca481bddf89",
+    "nome": "Implementação",
+    "status": "Pendente",
+    "prazo": "2025-12-18"
+  },
+  {
+    "id": "e60b7f41-d913-4a52-acf0-3ce4a749836f",
+    "nome": "Análise Inicial",
+    "status": "Pendente",
+    "prazo": "2025-12-05"
+  },
+  {
+    "id": "218f33bc-6baa-424c-9bef-43dd54a639d5",
+    "nome": "Implementação",
+    "status": "Pendente",
+    "prazo": "2025-12-18"
   }
 ]
