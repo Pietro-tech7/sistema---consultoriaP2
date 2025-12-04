@@ -12,17 +12,13 @@ public abstract class Pessoa {
         this.nome = nome;
         this.email = email;
     }
+
     public String getId() { return id; }
     public String getNome() { return nome; }
-    public String getEmail() { return email; } // CORRIGIDO: Deve retornar 'email', não 'nome'
-
-
-    public void setId(String id) { this.id = id; }
-    public void setNome(String nome) { this.nome = nome; }
-    public void setEmail(String email) { this.email = email; }
+    public String getEmail() { return email; }
 
     @Override
     public String toString() {
-        return  id + " - " + nome + " (" + email + ")";
+        return nome + " (" + email + ")";
     }
 }

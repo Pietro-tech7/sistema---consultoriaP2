@@ -4,56 +4,61 @@ import com.google.gson.*;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JsonRepository<T> {
-    private final File file;
+    private final String filePath;
     private final Gson gson;
-    private final Type type;
+    private final Type listType;
 
-    public JsonRepository(String path, Type type) {
-        this.file = new File(path);
+    public JsonRepository(String filePath, Type listType) {
+        this.filePath = filePath;
+        this.listType = listType;
 
         this.gson = new GsonBuilder()
                 .setPrettyPrinting()
-                .registerTypeAdapter(java.time.LocalDate.class,
-                        (JsonDeserializer<java.time.LocalDate>) (json, typeOfT, context) ->
-                                java.time.LocalDate.parse(json.getAsString()))
-                .registerTypeAdapter(java.time.LocalDate.class,
-                        (JsonSerializer<java.time.LocalDate>) (localDate, typeOfSrc, context) ->
-                                new JsonPrimitive(localDate.toString()))
+                .registerTypeAdapter(LocalDate.class, (JsonDeserializer<LocalDate>) (json, type, ctx) ->
+                        LocalDate.parse(json.getAsString()))
+                .registerTypeAdapter(LocalDate.class, (JsonSerializer<LocalDate>) (src, type, ctx) ->
+                        new JsonPrimitive(src.toString()))
                 .create();
 
-        this.type = type;
-        ensureFile();
+        criarArquivoSeNaoExistir();
     }
 
-    private void ensureFile() {
-        try {
-            if (!file.exists()) {
-                file.getParentFile().mkdirs();
-                Files.writeString(file.toPath(), "[]");
+    private void criarArquivoSeNaoExistir() {
+        File file = new File(filePath);
+        file.getParentFile().mkdirs();
+        if (!file.exists()) {
+            try {
+                Files.writeString(Paths.get(filePath), "[]");
+            } catch (IOException e) {
+                throw new RuntimeException("Erro ao criar arquivo JSON: " + filePath, e);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
     public List<T> listAll() {
         try {
-            String content = Files.readString(file.toPath());
-            if (content.isBlank()) return new ArrayList<>();
-            return gson.fromJson(content, type);
+            String content = Files.readString(Paths.get(filePath));
+            if (content == null || content.trim().isEmpty()) {
+                return new ArrayList<>();
+            }
+            return gson.fromJson(content, listType);
         } catch (IOException e) {
+            System.err.println("Erro ao ler o arquivo: " + filePath);
             return new ArrayList<>();
         }
     }
 
     public void saveAll(List<T> list) {
-        try (Writer w = new FileWriter(file)) {
-            gson.toJson(list, type, w);
+        try (FileWriter writer = new FileWriter(filePath)) {
+            gson.toJson(list, listType, writer);
         } catch (IOException e) {
+            System.err.println("Erro ao salvar no arquivo: " + filePath);
             e.printStackTrace();
         }
     }

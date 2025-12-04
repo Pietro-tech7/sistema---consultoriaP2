@@ -1,17 +1,11 @@
+onsultoria — Sistema de Gestão
 
-Consultoria — Sistema de Gestão
-
-Projeto simples em Java para gerenciamento de clientes, consultores, contratos, projetos,
-etapas e pagamentos, utilizando arquivos JSON como sistema de persistência.
+Projeto em Java para gerenciamento de clientes, consultores, contratos, projetos, etapas e pagamentos, com persistência em arquivos JSON.
 
 Tecnologias Utilizadas
-
 Java 21
-
 Maven
-
-Gson (JSON)
-
+Gson (para JSON)
 IntelliJ IDEA
 
 Estrutura do Projeto
@@ -19,74 +13,49 @@ Estrutura do Projeto
 src/
 └── main/
 └── java/com/consultoria/
-├── app/          → Classe Main
-├── model/        → Entidades (Cliente, Projeto, Consultor…)
+├── app/          → Main
+├── model/        → Entidades (Cliente, Consultor, Projeto…)
 ├── service/      → Regras de negócio
-└── repository/   → JsonRepository (persistência)
+└── repository/   → JsonRepository
 data/
-└── .json                  → Arquivos de armazenamento
+└── .json                 → Arquivos de persistência
 pom.xml
 
-Como Compilar o Projeto
-
+Como Compilar
 No IntelliJ:
 
-1. Abra o painel do Maven
-   View → Tool Windows → Maven
-
-
-2. Acesse:
-
-consultoria
-└── Lifecycle
-
-
-3. Clique em:
-
+View → Tool Windows → Maven
+Em Lifecycle, execute:
 clean
-
 install
 
 Como Executar
 
-1. Abra Main.java em
-   src/main/java/com/consultoria/app/Main.java
+Abra Main.java em:
 
+src/main/java/com/consultoria/app/Main.java
+Clique em Run
+Funcionalidades Implementadas
+ Cadastro completo de clientes (Regular/VIP), consultores (financeiro, gestão, TI) e contratos
+ Histórico de contratos anteriores por cliente
+ Alocação automática de consultores conforme especialização
+ Projetos divididos em etapas (análise, implementação, revisão) com prazos e status
+ Atualização de status de etapa com controle de progresso
+ Descontos automáticos para VIPs em pagamentos e faturamento
+ Relatórios personalizados para VIPs com insights e recomendações
+ Programa de fidelidade com acúmulo de pontos
+ Histórico detalhado de projetos com sugestões de novos serviços
+ Faturas detalhadas por etapa concluída
 
-2. Clique em Run
-
-
-Funcionalidades
-
-Cadastro e listagem de clientes
-
-Clientes VIP e sistema de fidelidade
-
-Cadastro de consultores
-
-Criação de contratos
-
-Criação de projetos e etapas
-
-Registro de pagamentos
-
-Relatório VIP com dados completos
-
-
-Persistência (JSON)
-
-Os dados são armazenados na pasta:
-
+Persistência
+Dados salvos automaticamente na pasta:
 /data
 
-Com arquivos como:
+Arquivos gerados:
 
-clientes.json  
-consultores.json  
-projetos.json  
-contratos.json  
-etapas.json     
+clientes.json
+consultores.json
+contratos.json
+projetos.json
+etapas.json
 pagamentos.json
-
-
-//Fiz pelo celular, por isso das setas

@@ -9,6 +9,7 @@ public class Consultor extends Pessoa {
         super(id, nome, email);
         this.especializacao = especializacao;
     }
+
     public String getEspecializacao() { return especializacao; }
     public void setEspecializacao(String e) { this.especializacao = e; }
 

@@ -5,95 +5,228 @@ import com.consultoria.repository.JsonRepository;
 import com.consultoria.service.*;
 import com.google.gson.reflect.TypeToken;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.UUID;
+import java.util.Scanner;
 
 public class Main {
+    private static final Scanner scanner = new Scanner(System.in);
+
+    private static ClienteService clienteService;
+    private static ConsultorService consultorService;
+    private static ContratoService contratoService;
+    private static ProjetoService projetoService;
+    private static EtapaService etapaService;
+    private static PagamentoService pagamentoService;
+    private static FidelidadeService fidelidadeService;
+    private static RelatorioService relatorioService;
+
     public static void main(String[] args) {
+        inicializarServicos();
 
-        JsonRepository<Cliente> repoCliente =
-                new JsonRepository<>("data/clientes.json", new TypeToken<List<Cliente>>(){}.getType());
+        boolean rodando = true;
+        while (rodando) {
+            System.out.println("\n=== SISTEMA DE GESTÃO - PLANILHA CERTA ===");
+            System.out.println("1. Clientes");
+            System.out.println("2. Consultores");
+            System.out.println("3. Contratos");
+            System.out.println("4. Projetos e Etapas");
+            System.out.println("5. Pagamentos");
+            System.out.println("6. Relatórios");
+            System.out.println("7. Fidelidade");
+            System.out.println("0. Sair");
+            System.out.print("Opção: ");
 
-        JsonRepository<Consultor> repoConsultor =
-                new JsonRepository<>("data/consultores.json", new TypeToken<List<Consultor>>(){}.getType());
+            int op;
+            try {
+                op = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Opção inválida. Digite um número.");
+                continue;
+            }
 
-        JsonRepository<Contrato> repoContrato =
-                new JsonRepository<>("data/contratos.json", new TypeToken<List<Contrato>>(){}.getType());
+            switch (op) {
+                case 1 -> menuClientes();
+                case 2 -> menuConsultores();
+                case 3 -> menuContratos();
+                case 4 -> menuProjetos();
+                case 5 -> menuPagamentos();
+                case 6 -> menuRelatorios();
+                case 7 -> menuFidelidade();
+                case 0 -> rodando = false;
+                default -> System.out.println("Opção inválida.");
+            }
+        }
+        System.out.println("Sistema encerrado.");
+    }
 
-        JsonRepository<Projeto> repoProjeto =
-                new JsonRepository<>("data/projetos.json", new TypeToken<List<Projeto>>(){}.getType());
+    private static void inicializarServicos() {
+        // Definir os tipos  Gson
+        var tipoCliente = new TypeToken<java.util.List<Cliente>>(){}.getType();
+        var tipoConsultor = new TypeToken<java.util.List<Consultor>>(){}.getType();
+        var tipoContrato = new TypeToken<java.util.List<Contrato>>(){}.getType();
+        var tipoProjeto = new TypeToken<java.util.List<Projeto>>(){}.getType();
+        var tipoEtapa = new TypeToken<java.util.List<Etapa>>(){}.getType();
+        var tipoPagamento = new TypeToken<java.util.List<Pagamento>>(){}.getType();
 
-        JsonRepository<Etapa> repoEtapa =
-                new JsonRepository<>("data/etapas.json", new TypeToken<List<Etapa>>(){}.getType());
+        // Criar repositórios
+        JsonRepository<Cliente> repoCliente = new JsonRepository<>("data/clientes.json", tipoCliente);
+        JsonRepository<Consultor> repoConsultor = new JsonRepository<>("data/consultores.json", tipoConsultor);
+        JsonRepository<Contrato> repoContrato = new JsonRepository<>("data/contratos.json", tipoContrato);
+        JsonRepository<Projeto> repoProjeto = new JsonRepository<>("data/projetos.json", tipoProjeto);
+        JsonRepository<Etapa> repoEtapa = new JsonRepository<>("data/etapas.json", tipoEtapa);
+        JsonRepository<Pagamento> repoPagamento = new JsonRepository<>("data/pagamentos.json", tipoPagamento);
 
-        JsonRepository<Pagamento> repoPagamento =
-                new JsonRepository<>("data/pagamentos.json", new TypeToken<List<Pagamento>>(){}.getType());
+        etapaService = new EtapaService(repoEtapa);
+        clienteService = new ClienteService(repoCliente);
+        consultorService = new ConsultorService(repoConsultor);
+        contratoService = new ContratoService(repoContrato);
+        projetoService = new ProjetoService(repoProjeto, etapaService);
+        pagamentoService = new PagamentoService(repoPagamento, clienteService);
+        fidelidadeService = new FidelidadeService(clienteService);
+        relatorioService = new RelatorioService(clienteService, projetoService);
+    }
 
-        ClienteService clienteService = new ClienteService(repoCliente);
-        ConsultorService consultorService = new ConsultorService(repoConsultor);
-        ContratoService contratoService = new ContratoService(repoContrato);
-        ProjetoService projetoService = new ProjetoService(repoProjeto);
-        EtapaService etapaService = new EtapaService(repoEtapa);
-        PagamentoService pagamentoService = new PagamentoService(repoPagamento);
+    // MENUS
+    private static void menuClientes() {
+        System.out.println("\n--- Clientes ---");
+        System.out.println("1. Cadastrar Regular\n2. Cadastrar VIP\n3. Listar\n0. Voltar");
+        int op = lerOpcao();
+        if (op == 1) {
+            System.out.print("Nome: "); String n = scanner.nextLine();
+            System.out.print("Email: "); String e = scanner.nextLine();
+            var c = new Cliente(java.util.UUID.randomUUID().toString(), n, e, "Regular");
+            clienteService.cadastrar(c);
+            System.out.println("Cliente Regular cadastrado.");
+        } else if (op == 2) {
+            System.out.print("Nome: "); String n = scanner.nextLine();
+            System.out.print("Email: "); String e = scanner.nextLine();
+            clienteService.cadastrarVIP(java.util.UUID.randomUUID().toString(), n, e);
+            System.out.println("Cliente VIP cadastrado.");
+        } else if (op == 3) {
+            clienteService.listar().forEach(System.out::println);
+        }
+    }
 
-        FidelidadeService fidelidadeService = new FidelidadeService(clienteService);
-        RelatorioService relatorioService = new RelatorioService(
-                clienteService, consultorService, projetoService, etapaService, pagamentoService
-        );
-        Cliente vip = clienteService.cadastrarVIP(
-                UUID.randomUUID().toString(),
-                "Rute Elias",
-                "rute@empresa.com"
-        );
+    private static void menuConsultores() {
+        System.out.println("\n--- Consultores ---");
+        System.out.println("1. Cadastrar\n2. Listar\n3. Buscar por especialização\n0. Voltar");
+        int op = lerOpcao();
+        if (op == 1) {
+            System.out.print("Nome: "); String n = scanner.nextLine();
+            System.out.print("Email: "); String e = scanner.nextLine();
+            System.out.print("Especialização: "); String esp = scanner.nextLine();
+            var c = new Consultor(java.util.UUID.randomUUID().toString(), n, e, esp);
+            consultorService.cadastrar(c);
+            System.out.println("Consultor cadastrado.");
+        } else if (op == 2) {
+            consultorService.listar().forEach(System.out::println);
+        } else if (op == 3) {
+            System.out.print("Especialização: "); String esp = scanner.nextLine();
+            consultorService.buscarPorEspecializacao(esp).forEach(System.out::println);
+        }
+    }
 
-        Consultor consultor = consultorService.cadastrar(
-                new Consultor(UUID.randomUUID().toString(), "João Consultor", "joao@consult.com", "Financeiro")
-        );
+    private static void menuContratos() {
+        System.out.println("\n--- Contratos ---");
+        System.out.println("1. Criar\n2. Listar\n0. Voltar");
+        int op = lerOpcao();
+        if (op == 1) {
+            System.out.print("ID Cliente: "); String cli = scanner.nextLine();
+            System.out.print("ID Consultor: "); String con = scanner.nextLine();
+            System.out.print("Valor: "); double v = Double.parseDouble(scanner.nextLine());
+            var clienteOpt = clienteService.buscar(cli);
+            if (clienteOpt.isEmpty()) {
+                System.out.println("Cliente não encontrado.");
+                return;
+            }
+            String clausulas = clienteOpt.get().getCategoria().equals("VIP") ?
+                    "Atendimento prioritário (VIP)" : "Contrato padrão";
+            var c = new Contrato(
+                    java.util.UUID.randomUUID().toString(),
+                    cli, con, v,
+                    java.time.LocalDate.now(),
+                    java.time.LocalDate.now().plusMonths(3),
+                    clausulas
+            );
+            contratoService.criar(c);
+            clienteService.adicionarContratoAoHistorico(cli, c.getId());
+            System.out.println("Contrato criado e vinculado ao cliente.");
+        } else if (op == 2) {
+            contratoService.listar().forEach(System.out::println);
+        }
+    }
 
-        Contrato contrato = contratoService.criar(
-                new Contrato(
-                        UUID.randomUUID().toString(),
-                        vip.getId(),
-                        consultor.getId(),
-                        5000.00,
-                        LocalDate.now(),
-                        LocalDate.now().plusMonths(3),
-                        "Atendimento prioritário (VIP)"
-                )
-        );
+    private static void menuProjetos() {
+        System.out.println("\n--- Projetos e Etapas ---");
+        System.out.println("1. Criar Projeto com Etapas\n2. Listar\n3. Atualizar Etapa\n0. Voltar");
+        int op = lerOpcao();
+        if (op == 1) {
+            System.out.print("Nome: "); String nome = scanner.nextLine();
+            System.out.print("ID Cliente: "); String cli = scanner.nextLine();
+            System.out.print("ID Consultor: "); String con = scanner.nextLine();
+            System.out.print("ID Contrato: "); String ct = scanner.nextLine();
+            var p = projetoService.criarProjetoComEtapas(
+                    java.util.UUID.randomUUID().toString(),
+                    nome, "Descrição padrão",
+                    cli, con, ct
+            );
+            System.out.println("Projeto e etapas criados (ID: " + p.getId() + ").");
+        } else if (op == 2) {
+            projetoService.listar().forEach(System.out::println);
+        } else if (op == 3) {
+            System.out.print("ID Etapa: "); String id = scanner.nextLine();
+            System.out.print("Novo status: "); String status = scanner.nextLine();
+            etapaService.atualizarStatus(id, status);
+            System.out.println("Status da etapa atualizado.");
+        }
+    }
 
-        Projeto projeto = projetoService.criarProjeto(
-                new Projeto(
-                        UUID.randomUUID().toString(),
-                        "Consultoria Financeira",
-                        "Projeto completo de análise e planejamento",
-                        vip.getId(),
-                        consultor.getId(),
-                        5000.00,
-                        "Em andamento"
-                )
-        );
+    private static void menuPagamentos() {
+        System.out.println("\n--- Pagamentos ---");
+        System.out.println("1. Registrar\n2. Marcar como Pago\n3. Listar\n0. Voltar");
+        int op = lerOpcao();
+        if (op == 1) {
+            System.out.print("ID Etapa: "); String et = scanner.nextLine();
+            System.out.print("ID Cliente: "); String cli = scanner.nextLine();
+            System.out.print("Valor: "); double v = Double.parseDouble(scanner.nextLine());
+            var pg = new Pagamento(
+                    java.util.UUID.randomUUID().toString(),
+                    et, cli, "", "", v
+            );
+            pagamentoService.registrar(pg, cli);
+            System.out.println("Pagamento registrado com desconto (se VIP).");
+        } else if (op == 2) {
+            System.out.print("ID Pagamento: "); String id = scanner.nextLine();
+            pagamentoService.marcarComoPago(id);
+            System.out.println("Pagamento confirmado.");
+        } else if (op == 3) {
+            pagamentoService.listar().forEach(System.out::println);
+        }
+    }
 
-        Etapa etapa1 = etapaService.criarEtapa(
-                new Etapa(UUID.randomUUID().toString(), "Análise Inicial", "Pendente", LocalDate.now().plusDays(7))
-        );
+    private static void menuRelatorios() {
+        System.out.println("\n--- Relatórios ---");
+        System.out.println("1. Geral\n2. VIP\n0. Voltar");
+        int op = lerOpcao();
+        if (op == 1) {
+            relatorioService.gerarRelatorioGeral();
+        } else if (op == 2) {
+            System.out.print("ID Cliente VIP: "); String id = scanner.nextLine();
+            relatorioService.gerarRelatorioVIP(id);
+        }
+    }
 
-        Etapa etapa2 = etapaService.criarEtapa(
-                new Etapa(UUID.randomUUID().toString(), "Implementação", "Pendente", LocalDate.now().plusDays(20))
-        );
+    private static void menuFidelidade() {
+        System.out.print("ID Cliente: "); String id = scanner.nextLine();
+        System.out.print("Pontos a adicionar: "); int p = Integer.parseInt(scanner.nextLine());
+        fidelidadeService.registrarPontos(id, p);
+        System.out.println("Pontos adicionados com sucesso.");
+    }
 
-        Pagamento pagamento = pagamentoService.registrar(
-                new Pagamento(UUID.randomUUID().toString(), etapa1.getId(), 2000.00),
-                vip
-        );
-
-        pagamentoService.marcarComoPago(pagamento.getId());
-
-        fidelidadeService.registrarPontos(vip, 50);
-
-        relatorioService.gerarRelatorioVIP();
-
-        System.out.println("\n=== Sistema finalizado com sucesso! ===");
+    private static int lerOpcao() {
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
     }
 }

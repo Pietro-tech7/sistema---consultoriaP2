@@ -1,32 +1,30 @@
 package com.consultoria.service;
 
-import com.consultoria.model.Cliente;
 import com.consultoria.model.Pagamento;
 import com.consultoria.repository.JsonRepository;
 
-import java.util.List;
+import java.util.*;
 
 public class PagamentoService {
-
     private final JsonRepository<Pagamento> repo;
     private final List<Pagamento> pagamentos;
+    private final ClienteService clienteService;
 
-    public PagamentoService(JsonRepository<Pagamento> repo) {
+    public PagamentoService(JsonRepository<Pagamento> repo, ClienteService clienteService) {
         this.repo = repo;
         this.pagamentos = repo.listAll();
+        this.clienteService = clienteService;
     }
 
-    public Pagamento registrar(Pagamento p, Cliente cliente) {
+    public Pagamento registrar(Pagamento p, String clienteId) {
+        var clienteOpt = clienteService.buscar(clienteId);
+        if (clienteOpt.isEmpty()) {
+            throw new RuntimeException("Cliente não encontrado.");
+        }
 
-        // aplica desconto VIP ou regular
-        double valorFinal = cliente.aplicarDesconto(p.getValor());
-
-        // atualiza o valor do pagamento via reflexão
-        try {
-            var campoValor = p.getClass().getDeclaredField("valor");
-            campoValor.setAccessible(true);
-            campoValor.set(p, valorFinal);
-        } catch (Exception ignored) {}
+        double valorFinal = clienteOpt.get().aplicarDesconto(p.getValor());
+        p.setValor(valorFinal);
+        p.setClienteId(clienteId); // ← AGORA FUNCIONA
 
         pagamentos.add(p);
         repo.saveAll(pagamentos);
@@ -34,20 +32,14 @@ public class PagamentoService {
     }
 
     public void marcarComoPago(String id) {
-        pagamentos.stream()
-                .filter(pg -> pg.getId().equals(id))
-                .findFirst()
-                .ifPresent(pg -> {
-                    try {
-                        var campo = pg.getClass().getDeclaredField("status");
-                        campo.setAccessible(true);
-                        campo.set(pg, "Pago");
-                    } catch (Exception ignored) {}
-                    repo.saveAll(pagamentos);
-                });
+        var opt = pagamentos.stream().filter(p -> p.getId().equals(id)).findFirst();
+        if (opt.isPresent()) {
+            opt.get().registrarPagamento();
+            repo.saveAll(pagamentos);
+        }
     }
 
     public List<Pagamento> listar() {
-        return pagamentos;
+        return new ArrayList<>(pagamentos);
     }
 }

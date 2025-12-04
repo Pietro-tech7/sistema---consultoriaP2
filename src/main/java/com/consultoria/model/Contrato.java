@@ -24,12 +24,12 @@ public class Contrato {
     }
 
     public String getId() { return id; }
-    public String getClienteId() { return clienteId;}
+    public String getClienteId() { return clienteId; }
     public String getConsultorId() { return consultorId; }
     public double getValorTotal() { return valorTotal; }
 
     @Override
     public String toString() {
-        return id + " -contrato de " + clienteId + " com " + consultorId + " valor= " + valorTotal;
+        return id + " - contrato de " + clienteId + " com " + consultorId + " valor= " + valorTotal;
     }
 }

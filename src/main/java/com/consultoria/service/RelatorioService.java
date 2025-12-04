@@ -1,55 +1,49 @@
 package com.consultoria.service;
 
+import com.consultoria.model.Cliente;
+import com.consultoria.model.Projeto;
 
-import com.consultoria.model.*;
-import java.util.*;
-
+import java.util.List;
 
 public class RelatorioService {
     private final ClienteService clienteService;
-    private final ConsultorService consultorService;
     private final ProjetoService projetoService;
-    private final EtapaService etapaService;
-    private final PagamentoService pagamentoService;
 
-
-    public RelatorioService(ClienteService c, ConsultorService cs, ProjetoService ps, EtapaService es, PagamentoService pg) {
-        this.clienteService = c;
-        this.consultorService = cs;
-        this.projetoService = ps;
-        this.etapaService = es;
-        this.pagamentoService = pg;
+    public RelatorioService(ClienteService clienteService, ProjetoService projetoService,
+            /* outros serviços não usados aqui */ Object... ignore) {
+        this.clienteService = clienteService;
+        this.projetoService = projetoService;
     }
 
-
-    public void gerarRelatorioVIP() {
-        System.out.println("===== RELATÓRIO VIP =====");
-
-
-        for (Cliente c : clienteService.listar()) {
-            if (!c.getCategoria().equalsIgnoreCase("VIP")) continue;
-
-
-            System.out.println("\nCliente VIP: " + c.getNome());
-            System.out.println("Pontos de fidelidade: " + c.getPontosFidelidade());
-
-            // Filtra todos os projetos por cliente 'c', exibe seus detalhes e lista as etapas associadas a cada projeto
-            projetoService.listar().stream()
-                    .filter(p -> p.getClienteId().equals(c.getId()))
-                    .forEach(p -> {
-                        System.out.println("\nProjeto: " + p.getNome());
-                        System.out.println("Descrição: " + p.getDescricao());
-                        System.out.println("Status: " + p.getStatus());
-
-
-                        etapaService.listar().stream()
-                                .filter(e -> e.getId().contains(p.getId()))
-                                .forEach(e -> System.out.println(" - Etapa: " + e));
-                    });
+    public void gerarRelatorioGeral() {
+        System.out.println("\n=== RELATÓRIO GERAL ===");
+        List<Projeto> projetos = projetoService.listar();
+        System.out.println("Total de projetos: " + projetos.size());
+        for (Projeto p : projetos) {
+            System.out.println("- " + p.getNome() + " (Cliente: " + p.getClienteId() + ")");
         }
     }
+
+    public void gerarRelatorioVIP(String clienteId) {
+        var clienteOpt = clienteService.buscar(clienteId);
+        if (clienteOpt.isEmpty()) {
+            System.out.println("Cliente não encontrado.");
+            return;
+        }
+
+        Cliente cliente = clienteOpt.get();
+        if (!"VIP".equalsIgnoreCase(cliente.getCategoria())) {
+            System.out.println("Relatório VIP disponível apenas para clientes VIP.");
+            return;
+        }
+
+        System.out.println("\n=== RELATÓRIO VIP - " + cliente.getNome() + " ===");
+        System.out.println("Pontos de fidelidade: " + cliente.getPontosFidelidade());
+        List<Projeto> projetos = projetoService.buscarPorCliente(clienteId);
+        System.out.println("Projetos em andamento: " + projetos.size());
+        for (Projeto p : projetos) {
+            System.out.println("- " + p.getNome() + " | ID: " + p.getId());
+        }
+        System.out.println("\n[Insight exclusivo] Recomendamos um novo projeto de análise de dados com base em seu histórico.");
+    }
 }
-
-
-
-
