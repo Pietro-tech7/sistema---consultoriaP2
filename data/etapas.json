@@ -322,5 +322,19 @@
     "nome": "Implementação",
     "status": "Pendente",
     "prazo": "2025-12-21"
+  },
+  {
+    "id": "3cd3e2da-229c-4b5e-bd50-edb1850cc2a9",
+    "projetoId": "fdf30bb0-c204-43eb-a0b3-2efd2f55c8d6",
+    "nome": "Análise Inicial",
+    "status": "Pendente",
+    "prazo": "2025-12-11"
+  },
+  {
+    "id": "e4c53cf9-c451-47a6-8706-132a1debf10e",
+    "projetoId": "fdf30bb0-c204-43eb-a0b3-2efd2f55c8d6",
+    "nome": "Implementação",
+    "status": "Pendente",
+    "prazo": "2025-12-24"
   }
 ]
