@@ -1,4 +1,4 @@
-onsultoria — Sistema de Gestão
+Consultoria — Sistema de Gestão
 
 Projeto em Java para gerenciamento de clientes, consultores, contratos, projetos, etapas e pagamentos, com persistência em arquivos JSON.
 
